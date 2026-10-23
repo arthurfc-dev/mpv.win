@@ -1,0 +1,95 @@
+{
+    "schemaVersion":  1,
+    "source":  "src/Player.App/packages.lock.json",
+    "packages":  [
+                     {
+                         "id":  "Microsoft.Web.WebView2",
+                         "version":  "1.0.3719.77",
+                         "nugetContentHash":  "t+ucyKw5NTwMjsUrDF6R9Lk40lpcKQD1/HgyGFxl49tdA4h9dKlsj6FYGEmDRpFNfnTpENuTypMcdbrlkqBdDA==",
+                         "archiveSha512":  "Cpq7EGgijiCN0lg1RlTZuZcRkzyo/USU9cEJMSPh6FG4PLjmTEpJ5NKuJqQ06ONnVVARCcTLf31IjjhFJUrApw==",
+                         "scope":  "app-local-runtime",
+                         "packageUrl":  "https://www.nuget.org/packages/Microsoft.Web.WebView2/1.0.3719.77",
+                         "licenseDeclaration":  "LICENSE.txt",
+                         "licenseTexts":  [
+                                              "licenses/Microsoft.Web.WebView2/1.0.3719.77/LICENSE.txt",
+                                              "licenses/Microsoft.Web.WebView2/1.0.3719.77/NOTICE.txt"
+                                          ]
+                     },
+                     {
+                         "id":  "Microsoft.Windows.SDK.BuildTools.MSIX",
+                         "version":  "1.7.251221100",
+                         "nugetContentHash":  "f4aIZJ0NUth2403oxrpR+9rxVzZVI6dabqB21u8ncnk8eJAKCs9m77E4iYAnvP1YwrRe4axz3f8+yUcttNSfEA==",
+                         "archiveSha512":  "3OEJjmDvPQH649p73taTt2n4AeY9dMg/gaDdZHQZh4xOOTAjdfuzuuw2FxSedpQuP9Pbki7FNGoE1mM4kjf0Mw==",
+                         "scope":  "build-tool",
+                         "packageUrl":  "https://www.nuget.org/packages/Microsoft.Windows.SDK.BuildTools.MSIX/1.7.251221100",
+                         "licenseDeclaration":  "sdk_license.txt",
+                         "licenseTexts":  [
+                                              "licenses/Microsoft.Windows.SDK.BuildTools.MSIX/1.7.251221100/NOTICE.txt",
+                                              "licenses/Microsoft.Windows.SDK.BuildTools.MSIX/1.7.251221100/sdk_license.txt"
+                                          ]
+                     },
+                     {
+                         "id":  "Microsoft.Windows.SDK.BuildTools",
+                         "version":  "10.0.28000.2705",
+                         "nugetContentHash":  "TZQ96xtu7+fyFsyJCgj6Hazru0H8G1kiE1CeZLGpsqT4xKQmkxWu9yRuxYLeHJECjqEHN7duZUTcdbt8zlQ8OQ==",
+                         "archiveSha512":  "47kp42eMb8rF3bjDuZHVkzGRb9Fr7wyFZDIT2sWr3StwnTCoDHIisDe0SPWGwerwVUw/eQQO/OxDb0YYHbfNvA==",
+                         "scope":  "build-tool",
+                         "packageUrl":  "https://www.nuget.org/packages/Microsoft.Windows.SDK.BuildTools/10.0.28000.2705",
+                         "licenseDeclaration":  "https://aka.ms/WinSDKLicenseURL",
+                         "licenseTexts":  [
+                                              "licenses/Microsoft.Windows.SDK.BuildTools/10.0.28000.2705/LICENSE-URL.txt"
+                                          ]
+                     },
+                     {
+                         "id":  "Microsoft.WindowsAppSDK.Base",
+                         "version":  "2.0.4",
+                         "nugetContentHash":  "QXSy2llX2/Bx9dYWGUEsb10F40q94ZiDnPMzqa2/qRmTG4y9EXxGp6uHITb7c0b4FCa+6KFBlgh6D53M0QEMEg==",
+                         "archiveSha512":  "Mjy6K7l9kj1+5UNPg8y/fkHx2be0TdLYaIWJsf7SlkZHEcFd6bl5L8uSjPNYK0Xz5vfaYELO5yKszHHIbaO75A==",
+                         "scope":  "app-local-runtime",
+                         "packageUrl":  "https://www.nuget.org/packages/Microsoft.WindowsAppSDK.Base/2.0.4",
+                         "licenseDeclaration":  "license.txt",
+                         "licenseTexts":  [
+                                              "licenses/Microsoft.WindowsAppSDK.Base/2.0.4/license.txt",
+                                              "licenses/Microsoft.WindowsAppSDK.Base/2.0.4/NOTICE.txt"
+                                          ]
+                     },
+                     {
+                         "id":  "Microsoft.WindowsAppSDK.Foundation",
+                         "version":  "2.3.12",
+                         "nugetContentHash":  "UflrNbXoZmHPt8lLGDk4gQ+yoGfQlCHd3TVTy7YwCMZ/aVGWAiLDqGCEjtWmNsI8ySy6imx3ZlenKfd2/VMPEg==",
+                         "archiveSha512":  "BXx9Vu6ZTn2F6PdAx1iaPa2fdCFyPegPIZ/m4+8DMp2Ur3orvUVAA/f2Sv9mBykfyVPD9dh2NQKj0JFYS/4w1g==",
+                         "scope":  "app-local-runtime",
+                         "packageUrl":  "https://www.nuget.org/packages/Microsoft.WindowsAppSDK.Foundation/2.3.12",
+                         "licenseDeclaration":  "license.txt",
+                         "licenseTexts":  [
+                                              "licenses/Microsoft.WindowsAppSDK.Foundation/2.3.12/license.txt"
+                                          ]
+                     },
+                     {
+                         "id":  "Microsoft.WindowsAppSDK.InteractiveExperiences",
+                         "version":  "2.1.9",
+                         "nugetContentHash":  "59nvb3pQYsBTTGrobeHkB4bkxASHtpaORJl7r6Zvg8PSIDCupEZTPKrIhnUknHDGfAtuBsnORjgvRi2WXGaRhA==",
+                         "archiveSha512":  "3WQp3t0txhg+RHw1j4UENtUviBq5n+bDnCqgY0wDhoRglvoRK1O6YsvWOMXnL5e2IxwIVuwZF0CXhvD5pKUeBw==",
+                         "scope":  "app-local-runtime",
+                         "packageUrl":  "https://www.nuget.org/packages/Microsoft.WindowsAppSDK.InteractiveExperiences/2.1.9",
+                         "licenseDeclaration":  "license.txt",
+                         "licenseTexts":  [
+                                              "licenses/Microsoft.WindowsAppSDK.InteractiveExperiences/2.1.9/license.txt"
+                                          ]
+                     },
+                     {
+                         "id":  "Microsoft.WindowsAppSDK.WinUI",
+                         "version":  "2.3.9",
+                         "nugetContentHash":  "GiuYUQqMYD5lycT+X2AGX1rlbHU/zf8xoPeZNXZbJj4mZcSr4STsxeRUMxnTUQLAmmjjQaPrTIRjn78vbPhAvg==",
+                         "archiveSha512":  "tOdVUPFfkZe5+BJxGFnJplY+1e1CFog0xqz8lEQvkic1nMEvh0BVzU/z86GBZtDvLxjCNg5UTXmDtOBq0nCgVQ==",
+                         "scope":  "app-local-runtime",
+                         "packageUrl":  "https://www.nuget.org/packages/Microsoft.WindowsAppSDK.WinUI/2.3.9",
+                         "licenseDeclaration":  "license.txt",
+                         "licenseTexts":  [
+                                              "licenses/Microsoft.WindowsAppSDK.WinUI/2.3.9/license.txt",
+                                              "licenses/Microsoft.WindowsAppSDK.WinUI/2.3.9/NOTICE.txt",
+                                              "licenses/Microsoft.WindowsAppSDK.WinUI/2.3.9/tools/NOTICE.txt"
+                                          ]
+                     }
+                 ]
+}

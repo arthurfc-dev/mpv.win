@@ -1,0 +1,56 @@
+<Application
+    x:Class="Player.App.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+      </ResourceDictionary.MergedDictionaries>
+      <CornerRadius x:Key="GridViewItemCornerRadius">6</CornerRadius>
+      <Thickness x:Key="GridViewItemSelectedBorderThickness">1</Thickness>
+      <SolidColorBrush x:Key="MpvWinNavigationAccentBrush" Color="{ThemeResource SystemAccentColor}" />
+      <StaticResource x:Key="NavigationViewSelectionIndicatorForeground" ResourceKey="MpvWinNavigationAccentBrush" />
+      <Style x:Key="MediaCardContainerStyle" TargetType="GridViewItem" BasedOn="{StaticResource DefaultGridViewItemStyle}">
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="Margin" Value="0,0,8,8" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Top" />
+        <!-- Keep the hover background fitted to the card's actual title and
+             duration. The wrap grid still reserves a uniform row slot. -->
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="MinWidth" Value="0" />
+        <Setter Property="MinHeight" Value="0" />
+      </Style>
+      <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+          <SolidColorBrush x:Key="MediaThumbnailBackgroundBrush" Color="Black" />
+          <SolidColorBrush x:Key="MediaThumbnailForegroundBrush" Color="#B3FFFFFF" />
+          <SolidColorBrush x:Key="MediaThumbnailOutlineBrush" Color="#60808080" />
+          <StaticResource x:Key="GridViewItemPointerOverBorderBrush" ResourceKey="CardStrokeColorDefaultBrush" />
+          <LinearGradientBrush x:Key="PlayerOverlayBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#00000000" Offset="0" />
+            <GradientStop Color="#A6000000" Offset="0.45" />
+            <GradientStop Color="#D9000000" Offset="1" />
+          </LinearGradientBrush>
+          <LinearGradientBrush x:Key="PlayerTitleScrimBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#30000000" Offset="0" />
+            <GradientStop Color="#00000000" Offset="1" />
+          </LinearGradientBrush>
+          <SolidColorBrush x:Key="PlayerChromeForegroundBrush" Color="White" />
+          <SolidColorBrush x:Key="PlayerTitleBarBrush" Color="#66000000" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="HighContrast">
+          <SolidColorBrush x:Key="MediaThumbnailBackgroundBrush" Color="{ThemeResource SystemColorWindowColor}" />
+          <SolidColorBrush x:Key="MediaThumbnailForegroundBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+          <SolidColorBrush x:Key="MediaThumbnailOutlineBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+          <SolidColorBrush x:Key="GridViewItemPointerOverBorderBrush" Color="{ThemeResource SystemColorHighlightColor}" />
+          <SolidColorBrush x:Key="PlayerOverlayBrush" Color="{ThemeResource SystemColorWindowColor}" />
+          <SolidColorBrush x:Key="PlayerTitleScrimBrush" Color="{ThemeResource SystemColorWindowColor}" />
+          <SolidColorBrush x:Key="PlayerChromeForegroundBrush" Color="{ThemeResource SystemColorWindowTextColor}" />
+          <SolidColorBrush x:Key="PlayerTitleBarBrush" Color="{ThemeResource SystemColorWindowColor}" />
+        </ResourceDictionary>
+      </ResourceDictionary.ThemeDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>

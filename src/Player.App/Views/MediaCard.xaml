@@ -1,0 +1,41 @@
+<UserControl
+    x:Class="Player.App.Views.MediaCard"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    GettingFocus="OnGettingFocus" LostFocus="OnLostFocus" Unloaded="OnCardUnloaded">
+  <!-- Transparent brushes keep the artwork and the spaces around its text
+       inside the card's hit-test area without covering the rounded image. -->
+  <StackPanel Spacing="4" Background="Transparent">
+    <Grid x:Name="ThumbnailArea" Background="Transparent" Height="126" SizeChanged="OnThumbnailSizeChanged">
+      <Rectangle RadiusX="4" RadiusY="4" Fill="{ThemeResource MediaThumbnailBackgroundBrush}" IsHitTestVisible="False" />
+      <FontIcon x:Name="FallbackIcon" Glyph="&#xE714;" FontSize="32"
+                Foreground="{ThemeResource MediaThumbnailForegroundBrush}" />
+      <ProgressRing x:Name="PreviewProgress" Width="20" Height="20" IsActive="False" Visibility="Collapsed"
+                    AutomationProperties.Name="Loading video preview" />
+      <!-- The brush is painted into the rounded shape itself. An Image child
+           would otherwise cover the Border's rounded edge and its outline. -->
+      <Rectangle RadiusX="4" RadiusY="4" IsHitTestVisible="False">
+        <Rectangle.Fill><ImageBrush x:Name="Artwork" Stretch="UniformToFill" /></Rectangle.Fill>
+      </Rectangle>
+      <Grid x:Name="MotionHost" IsHitTestVisible="False" Visibility="Collapsed" />
+      <Rectangle RadiusX="4" RadiusY="4" StrokeThickness="1"
+                 Stroke="{ThemeResource MediaThumbnailOutlineBrush}" IsHitTestVisible="False" />
+      <Grid x:Name="CardActions" Visibility="Collapsed" Margin="10" VerticalAlignment="Bottom">
+        <Button x:Name="CardPlayButton" Width="32" Height="32" Padding="0" CornerRadius="16" HorizontalAlignment="Left"
+                Click="OnPlayClick" AutomationProperties.Name="Play" ToolTipService.ToolTip="Play">
+          <FontIcon Glyph="&#xE768;" FontSize="14" />
+        </Button>
+        <Button x:Name="CardMoreButton" Width="32" Height="32" Padding="0" CornerRadius="16" HorizontalAlignment="Right"
+                Click="OnMoreClick" AutomationProperties.Name="Options" ToolTipService.ToolTip="Options">
+          <FontIcon Glyph="&#xE712;" FontSize="14" />
+        </Button>
+      </Grid>
+    </Grid>
+    <StackPanel Spacing="0">
+    <TextBlock x:Name="TitleLabel" Margin="4,0,4,0" FontSize="14" FontWeight="SemiBold"
+               TextWrapping="Wrap" MaxLines="2" TextTrimming="CharacterEllipsis" />
+    <TextBlock x:Name="DurationLabel" Margin="4,0,4,2" Height="16"
+               Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+    </StackPanel>
+  </StackPanel>
+</UserControl>

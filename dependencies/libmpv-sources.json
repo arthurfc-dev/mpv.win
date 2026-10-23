@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "repository": "arthurfc-dev/mpv.win",
+  "bundles": [
+    {
+      "url": "https://github.com/arthurfc-dev/mpv.win/releases/download/v1.0.0/libmpv-pinned-candidate-base-sources.zip",
+      "sha256": "2143e197da07336febfe70ce061e09b61f2b5a52496e9e3c65eb1b6a86a30b74",
+      "name": "libmpv-pinned-candidate-base-sources.zip",
+      "assetId": 667559882
+    },
+    {
+      "url": "https://github.com/arthurfc-dev/mpv.win/releases/download/v1.0.0/libmpv-pinned-candidate-39836010261.tar.gz",
+      "sha256": "a2a2c168fc13301191d2c4100180dc0ac867fbf32de21988c58b8859f3eec5fc",
+      "name": "libmpv-pinned-candidate-39836010261.tar.gz",
+      "assetId": 667562032
+    }
+  ],
+  "availability": "Corresponding-source archives are distributed alongside setup in the mpv.win 1.0 release. Build recipes, patches and source inventories are preserved in these archives."
+}

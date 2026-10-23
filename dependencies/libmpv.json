@@ -1,0 +1,15 @@
+{
+  "version": "v0.41.0-g6a262d11f-mpv-win.1",
+  "commit": "6a262d11f63733d37e3ee6d5fafcb1be1ef83952",
+  "buildType": "mpv.win pinned rebuild / x86_64 / GPL-covered combination containing FFTW",
+  "assetId": 667559396,
+  "url": "https://github.com/arthurfc-dev/mpv.win/releases/download/v1.0.0/libmpv-g6a262d11f-mpv-win.1-x86_64-lgpl.zip",
+  "sha256": "b1b3a5cb1d1b44cf15a10a6590ef35f19fd57737542a968a52077792d346b59f",
+  "mirror": {
+    "url": "https://github.com/arthurfc-dev/mpv.win/releases/download/v1.0.0/libmpv-g6a262d11f-mpv-win.1-x86_64-lgpl.zip",
+    "apiUrl": "https://api.github.com/repos/arthurfc-dev/mpv.win/releases/assets/667559396"
+  },
+  "dllSha256": "34450ccf97dbcacc79d6f3b051a49b039c6aca8c4860d1af60b731e5fd46f03b",
+  "renderApiHeaderSha256": "7b880453ee3c780b0d0f1c3f8ecaa1d23b289522f4c687e6857c8475f4a3f6fb",
+  "archiveLabelNote": "The preserved cache filename contains the historical lgpl label. It is not an LGPL-only licensing claim for this binary."
+}

@@ -1,0 +1,83 @@
+name: Collect pinned dependency notices
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  collect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Download exact source bundles
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p artifacts/sources artifacts/notices
+          python3 - <<'PY'
+          import json, os, subprocess
+          pins = json.load(open('dependencies/libmpv-sources.json'))
+          for bundle in pins['bundles']:
+              subprocess.run(['curl', '--fail', '--location', '--retry', '3',
+                  '--header', 'Authorization: Bearer ' + os.environ['GH_TOKEN'],
+                  '--header', 'Accept: application/octet-stream',
+                  '--output', 'artifacts/sources/' + bundle['name'],
+                  f'https://api.github.com/repos/{pins["repository"]}/releases/assets/{bundle["assetId"]}'], check=True)
+          PY
+      - name: Collect exact source notices
+        run: python3 scripts/collect-libmpv-notices.py artifacts/sources artifacts/notices
+      - name: Preserve toolchain notices from the pinned build image
+        run: |
+          set -euo pipefail
+          image=$(python3 -c 'import json; print(json.load(open("dependencies/libmpv-build.json"))["container"])')
+          docker pull "$image"
+          docker run --rm --entrypoint /bin/bash -v "$PWD/artifacts/notices:/output" "$image" -c '
+            set -euo pipefail
+            rustc -Vv > /output/rust-version.txt
+            sysroot=$(rustc --print sysroot)
+            mkdir -p /output/Rust
+            for name in COPYRIGHT.html COPYRIGHT-library.html; do
+              test -f "$sysroot/share/doc/rust/$name"
+              cp "$sysroot/share/doc/rust/$name" /output/Rust/
+            done
+            for name in COPYRIGHT LICENSE-APACHE LICENSE-MIT; do
+              if test -f "$sysroot/share/doc/rust/$name"; then cp "$sysroot/share/doc/rust/$name" /output/Rust/; fi
+            done
+          '
+      - name: Record toolchain notice hashes
+        run: |
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          root = Path('artifacts/notices')
+          inventory = json.loads((root / 'notice-inventory.json').read_text())
+          version = (root / 'rust-version.txt').read_text()
+          expected = json.load(open('dependencies/runtime-inventory.json'))['rustRuntime']['sourceCommit']
+          if 'commit-hash: ' + expected not in version:
+              raise RuntimeError('Rust toolchain differs from the audited version')
+          evidence = {
+              'schemaVersion': 1,
+              'rustVersion': version,
+              'buildInputNotices': len(inventory['files']),
+              'sourceArchives': len(inventory['archives']),
+              'inlineNotices': [],
+              'additionalFiles': [
+                  {'path': p.relative_to(root).as_posix(), 'sha256': hashlib.sha256(p.read_bytes()).hexdigest()}
+                  for p in sorted((root / 'Rust').iterdir()) if p.is_file()
+              ],
+          }
+          (root / 'collection-evidence.json').write_text(json.dumps(evidence, indent=2) + '\n')
+          PY
+      - name: Archive notices
+        run: sudo tar -czf artifacts/dependency-notices.tar.gz -C artifacts/notices .
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: dependency-notices-${{ github.run_id }}
+          path: artifacts/dependency-notices.tar.gz
+          retention-days: 30
+          if-no-files-found: error

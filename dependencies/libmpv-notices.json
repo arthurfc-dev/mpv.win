@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "url": "https://github.com/arthurfc-dev/mpv.win/releases/download/v1.0.0/libmpv-g6a262d11f-mpv-win.1-notices.2.zip",
+  "apiUrl": "https://api.github.com/repos/arthurfc-dev/mpv.win/releases/assets/667559574",
+  "sha256": "7fc8ab89153c96fbd704d97da3048a49b2b25817ab54b3eba78d183fe19ce4ef",
+  "dllSha256": "34450ccf97dbcacc79d6f3b051a49b039c6aca8c4860d1af60b731e5fd46f03b",
+  "sourceArchiveCount": 134,
+  "noticeFileCount": 906,
+  "scope": "Conservative build-input notices including unlinked/build-only components; exact toolchain standard-library notices and inline NVIDIA header licenses are included.",
+  "originalCollectionRunId": 39866603497,
+  "collectionEvidence": "notice-inventory.json and collection-evidence.json are preserved in the checksum-pinned notice archive. The original build repository was replaced."
+}

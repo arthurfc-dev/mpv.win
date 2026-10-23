@@ -1,0 +1,109 @@
+<UserControl x:Class="Player.App.Views.PlaybackSettingsView"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+ <UserControl.Resources>
+  <Style x:Key="SettingsRow" TargetType="Border">
+   <Setter Property="Padding" Value="16" /><Setter Property="CornerRadius" Value="6" />
+   <Setter Property="Background" Value="{ThemeResource CardBackgroundFillColorDefaultBrush}" />
+  </Style>
+  <Style x:Key="SettingsDescription" TargetType="TextBlock">
+   <Setter Property="FontSize" Value="12" /><Setter Property="TextWrapping" Value="Wrap" />
+   <Setter Property="Foreground" Value="{ThemeResource TextFillColorSecondaryBrush}" />
+  </Style>
+ </UserControl.Resources>
+ <Grid>
+ <NavigationView x:Name="SettingsNavigation" PaneTitle="Configuration" IsSettingsVisible="False"
+                 IsBackButtonVisible="Collapsed" IsTitleBarAutoPaddingEnabled="False"
+                 PaneDisplayMode="Auto" OpenPaneLength="240" CompactPaneLength="48"
+                 ExpandedModeThresholdWidth="1000" CompactModeThresholdWidth="640"
+                 IsPaneOpen="True" AlwaysShowHeader="False" Background="Transparent"
+                 SelectionChanged="OnCategorySelected" ItemInvoked="OnCategoryInvoked">
+  <NavigationView.MenuItems>
+   <NavigationViewItem x:Name="GeneralCategory" Content="General" Tag="general">
+    <NavigationViewItem.Icon><FontIcon Glyph="&#xE713;" /></NavigationViewItem.Icon>
+   </NavigationViewItem>
+   <NavigationViewItem Content="Video" Tag="video">
+    <NavigationViewItem.Icon><FontIcon Glyph="&#xE714;" /></NavigationViewItem.Icon>
+   </NavigationViewItem>
+   <NavigationViewItem Content="Audio" Tag="audio">
+    <NavigationViewItem.Icon><FontIcon Glyph="&#xE767;" /></NavigationViewItem.Icon>
+   </NavigationViewItem>
+   <NavigationViewItem Content="Subtitles" Tag="subtitles">
+    <NavigationViewItem.Icon><SymbolIcon Symbol="ClosedCaption" /></NavigationViewItem.Icon>
+   </NavigationViewItem>
+   <NavigationViewItem Content="Window" Tag="window">
+    <NavigationViewItem.Icon><FontIcon Glyph="&#xE737;" /></NavigationViewItem.Icon>
+   </NavigationViewItem>
+   <NavigationViewItem Content="Playback" Tag="playback">
+    <NavigationViewItem.Icon><FontIcon Glyph="&#xE768;" /></NavigationViewItem.Icon>
+   </NavigationViewItem>
+   <NavigationViewItem Content="Input" Tag="input">
+    <NavigationViewItem.Icon><FontIcon Glyph="&#xE765;" /></NavigationViewItem.Icon>
+   </NavigationViewItem>
+   <NavigationViewItem Content="Appearance" Tag="appearance">
+    <NavigationViewItem.Icon><FontIcon Glyph="&#xE790;" /></NavigationViewItem.Icon>
+   </NavigationViewItem>
+  </NavigationView.MenuItems>
+  <NavigationView.FooterMenuItems>
+   <NavigationViewItem Content="Back to library" Tag="library" SelectsOnInvoked="False"
+                       AutomationProperties.Name="Back to library" ToolTipService.ToolTip="Back to library">
+    <NavigationViewItem.Icon><FontIcon Glyph="&#xE72B;" /></NavigationViewItem.Icon>
+   </NavigationViewItem>
+  </NavigationView.FooterMenuItems>
+  <Border Background="{ThemeResource LayerFillColorDefaultBrush}" CornerRadius="8,0,0,0"
+          BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1,1,0,0">
+   <Grid x:Name="CategoryLayout" Padding="32,16,32,24" RowSpacing="16" SizeChanged="OnCategorySizeChanged">
+    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+    <StackPanel Spacing="8">
+     <TextBlock x:Name="CategoryHeading" Text="General" FontSize="28" FontWeight="SemiBold"
+                TextTrimming="CharacterEllipsis" AutomationProperties.HeadingLevel="Level1" />
+     <TextBlock x:Name="CategoryDescription" TextWrapping="Wrap" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+     <ToggleSwitch x:Name="AdvancedSettingsSwitch" Header="Show advanced settings"
+                   Toggled="OnAdvancedSettingsToggled"
+                   ToolTipService.ToolTip="Show detailed playback, rendering and window controls. Save this preference with Apply." />
+     <InfoBar x:Name="SettingsNotice" IsOpen="False" IsClosable="True" />
+    </StackPanel>
+    <ScrollViewer x:Name="CategoryScroll" Grid.Row="1" VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollMode="Disabled" HorizontalScrollBarVisibility="Disabled"
+                  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Top">
+     <Grid Padding="0,0,20,16" Width="{Binding ViewportWidth, ElementName=CategoryScroll}" MaxWidth="960" HorizontalAlignment="Left">
+      <StackPanel x:Name="GeneralFields" Spacing="12" />
+      <StackPanel x:Name="PlaybackFields" Spacing="8" Visibility="Collapsed" />
+      <StackPanel x:Name="AudioFields" Spacing="8" Visibility="Collapsed" />
+      <StackPanel x:Name="SubtitleFields" Spacing="8" Visibility="Collapsed" />
+      <StackPanel x:Name="InputFields" Spacing="8" Visibility="Collapsed" />
+      <StackPanel x:Name="AppearanceFields" Spacing="8" Visibility="Collapsed" />
+      <StackPanel x:Name="WindowFields" Spacing="8" Visibility="Collapsed" />
+      <StackPanel x:Name="VideoFields" Spacing="12" Visibility="Collapsed">
+       <StackPanel x:Name="VideoGeneralFields" Spacing="8" />
+       <Expander x:Name="VideoRenderSection" Header="Render options" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+        <StackPanel Spacing="12">
+         <StackPanel x:Name="VideoRenderFields" Spacing="8" />
+         <Expander Header="Scaling" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+          <StackPanel x:Name="VideoScalingFields" Spacing="8" />
+         </Expander>
+        </StackPanel>
+       </Expander>
+       <Expander x:Name="VideoLibplaceboSection" Header="libplacebo" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+        <StackPanel x:Name="VideoLibplaceboFields" Spacing="8" />
+       </Expander>
+      </StackPanel>
+     </Grid>
+    </ScrollViewer>
+    <StackPanel Grid.Row="2" Spacing="8">
+     <TextBlock Text="Apply saves changes across all categories." Style="{StaticResource SettingsDescription}" />
+     <StackPanel Orientation="Horizontal" Spacing="8">
+      <Button x:Name="ApplyButton" Content="Apply" CornerRadius="{ThemeResource ControlCornerRadius}" IsEnabled="False" Click="OnApply" />
+      <Button x:Name="RevertButton" Content="Discard changes" IsEnabled="False" Click="OnDiscard" />
+     </StackPanel>
+    </StackPanel>
+   </Grid>
+  </Border>
+ </NavigationView>
+ <Border x:Name="SettingsToastHost" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+         Margin="24" MaxWidth="360" Visibility="Collapsed" Opacity="0" IsHitTestVisible="False">
+  <InfoBar x:Name="SettingsToastMessage" IsOpen="True" IsClosable="False" Severity="Success"
+           CornerRadius="8" AutomationProperties.LiveSetting="Polite" />
+ </Border>
+ </Grid>
+</UserControl>

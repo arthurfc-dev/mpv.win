@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "mpv.win": {
+      "commandName": "Project"
+    }
+  }
+}

@@ -1,0 +1,149 @@
+<UserControl
+    x:Class="Player.App.Views.HomeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:views="using:Player.App.Views" Loaded="OnViewLoaded" SizeChanged="OnHomeSizeChanged">
+  <UserControl.Resources>
+    <Style x:Key="LibrarySearchTextBox" TargetType="TextBox">
+      <Setter Property="MaxLength" Value="256" />
+      <Setter Property="IsSpellCheckEnabled" Value="False" />
+      <Setter Property="IsTextPredictionEnabled" Value="False" />
+    </Style>
+    <!-- Preserve NavigationView's compact-pane states while allowing a real
+         button in the category heading instead of a text-only header. -->
+    <Style x:Key="FolderHeadingStyle" TargetType="NavigationViewItemHeader">
+      <Setter Property="IsEnabled" Value="True" />
+      <Setter Property="IsTabStop" Value="False" />
+      <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="NavigationViewItemHeader">
+            <Grid>
+              <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="PaneStates">
+                  <VisualState x:Name="HeaderTextVisible" />
+                  <VisualState x:Name="HeaderTextCollapsed">
+                    <VisualState.Setters>
+                      <Setter Target="HeaderContent.Visibility" Value="Collapsed" />
+                      <Setter Target="HeaderContent.Height" Value="0" />
+                    </VisualState.Setters>
+                  </VisualState>
+                </VisualStateGroup>
+              </VisualStateManager.VisualStateGroups>
+              <ContentPresenter x:Name="HeaderContent" Content="{TemplateBinding Content}"
+                                HorizontalContentAlignment="Stretch" Margin="16,4,12,4" MinHeight="36" />
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+  </UserControl.Resources>
+  <Grid>
+  <NavigationView x:Name="Navigation" IsBackButtonVisible="Collapsed" IsSettingsVisible="True"
+                  PaneDisplayMode="Auto" OpenPaneLength="272" CompactPaneLength="48"
+                  ExpandedModeThresholdWidth="1000" CompactModeThresholdWidth="640"
+                  IsPaneOpen="True" IsTitleBarAutoPaddingEnabled="False"
+                  AlwaysShowHeader="False" SelectionChanged="OnSelectionChanged" ItemInvoked="OnItemInvoked"
+                  Background="Transparent" DisplayModeChanged="OnDisplayModeChanged">
+    <NavigationView.AutoSuggestBox>
+      <AutoSuggestBox x:Name="MediaSearch" PlaceholderText="Search" QueryIcon="Find"
+                      IsEnabled="False" TextBoxStyle="{StaticResource LibrarySearchTextBox}"
+                      TextChanged="OnSearchTextChanged" QuerySubmitted="OnSearchSubmitted"
+                      AutomationProperties.Name="Search"
+                      AutomationProperties.HelpText="Search video names and folder paths across all mpv.win library locations."
+                      ToolTipService.ToolTip="Search" />
+    </NavigationView.AutoSuggestBox>
+    <NavigationView.MenuItems>
+      <NavigationViewItem x:Name="HomeItem" Content="Home" Tag="home">
+        <NavigationViewItem.Icon><FontIcon Glyph="&#xE80F;" /></NavigationViewItem.Icon>
+      </NavigationViewItem>
+      <NavigationViewItem x:Name="VideosItem" Content="Videos" Tag="videos">
+        <NavigationViewItem.Icon><FontIcon Glyph="&#xE714;" /></NavigationViewItem.Icon>
+      </NavigationViewItem>
+      <NavigationViewItem Content="Favorites" Tag="favorites">
+        <NavigationViewItem.Icon><FontIcon Glyph="&#xEB52;" /></NavigationViewItem.Icon>
+      </NavigationViewItem>
+      <NavigationViewItemSeparator />
+      <NavigationViewItem x:Name="ComputerItem" Content="This Computer" Tag="computer" HasUnrealizedChildren="True">
+        <NavigationViewItem.Icon><FontIcon Glyph="&#xE7F4;" /></NavigationViewItem.Icon>
+        <NavigationViewItem.ContextFlyout><MenuFlyout x:Name="FoldersMenu" Opening="OnFoldersMenuOpening" /></NavigationViewItem.ContextFlyout>
+      </NavigationViewItem>
+      <NavigationViewItemSeparator />
+      <NavigationViewItemHeader x:Name="CustomFoldersHeading" Style="{StaticResource FolderHeadingStyle}">
+        <Grid ColumnSpacing="8">
+          <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+          <FontIcon Glyph="&#xE8F4;" FontSize="16" />
+          <TextBlock Grid.Column="1" Text="Added folders" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"
+                     AutomationProperties.HeadingLevel="Level2" />
+          <Button x:Name="AddFolderButton" Grid.Column="2" Click="OnAddFolder" IsEnabled="False"
+                  Width="32" Height="32" Padding="0" Style="{StaticResource SubtleButtonStyle}"
+                  ToolTipService.ToolTip="Add a folder" AutomationProperties.Name="Add a folder">
+            <FontIcon Glyph="&#xE710;" FontSize="16" />
+          </Button>
+        </Grid>
+      </NavigationViewItemHeader>
+      <NavigationViewItemSeparator x:Name="PinnedSeparator" Visibility="Collapsed" />
+      <NavigationViewItemHeader x:Name="PinnedFoldersHeading" Style="{StaticResource FolderHeadingStyle}" Visibility="Collapsed">
+        <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+          <FontIcon Glyph="&#xE718;" FontSize="16" />
+          <TextBlock Text="Pinned folders" FontSize="14" FontWeight="SemiBold" AutomationProperties.HeadingLevel="Level2" />
+        </StackPanel>
+      </NavigationViewItemHeader>
+    </NavigationView.MenuItems>
+    <Border Background="{ThemeResource LayerFillColorDefaultBrush}" CornerRadius="8,0,0,0"
+            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1,1,0,0">
+      <Grid x:Name="ContentLayout" Padding="40,12,40,32" RowSpacing="12" SizeChanged="OnContentSizeChanged">
+        <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="*" /></Grid.RowDefinitions>
+        <Grid ColumnSpacing="16" MinHeight="40">
+          <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+          <TextBlock x:Name="PageHeading" Text="Home" Style="{ThemeResource TitleTextBlockStyle}" FontSize="28" TextTrimming="CharacterEllipsis"
+                     VerticalAlignment="Center" AutomationProperties.HeadingLevel="Level1" />
+          <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+            <DropDownButton x:Name="HomeFilter" MinWidth="0" Width="180"
+                            Height="{Binding ActualHeight, ElementName=OpenFileButton}" MinHeight="0"
+                            VerticalAlignment="Center" AutomationProperties.Name="Home sections: All sections"
+                            ToolTipService.ToolTip="Home sections: All sections">
+              <StackPanel Orientation="Horizontal" Spacing="8">
+                <FontIcon x:Name="HomeFilterIcon" Glyph="&#xE80A;" FontSize="16" />
+                <TextBlock x:Name="HomeFilterLabel" Text="All sections" />
+              </StackPanel>
+              <DropDownButton.Flyout>
+                <MenuFlyout x:Name="HomeSectionsMenu">
+                  <RadioMenuFlyoutItem Text="All sections" Tag="all" GroupName="HomeSections" IsChecked="True" Click="OnHomeFilterSelected">
+                    <RadioMenuFlyoutItem.Icon><FontIcon Glyph="&#xE80A;" /></RadioMenuFlyoutItem.Icon>
+                  </RadioMenuFlyoutItem>
+                  <RadioMenuFlyoutItem Text="Recent videos" Tag="recent" GroupName="HomeSections" Click="OnHomeFilterSelected">
+                    <RadioMenuFlyoutItem.Icon><FontIcon Glyph="&#xE81C;" /></RadioMenuFlyoutItem.Icon>
+                  </RadioMenuFlyoutItem>
+                  <RadioMenuFlyoutItem Text="This Computer" Tag="computer" GroupName="HomeSections" Click="OnHomeFilterSelected">
+                    <RadioMenuFlyoutItem.Icon><FontIcon Glyph="&#xE7F4;" /></RadioMenuFlyoutItem.Icon>
+                  </RadioMenuFlyoutItem>
+                  <RadioMenuFlyoutItem Text="Added folders" Tag="custom" GroupName="HomeSections" Click="OnHomeFilterSelected">
+                    <RadioMenuFlyoutItem.Icon><FontIcon Glyph="&#xE8F4;" /></RadioMenuFlyoutItem.Icon>
+                  </RadioMenuFlyoutItem>
+                  <RadioMenuFlyoutItem Text="Pinned folders" Tag="pinned" GroupName="HomeSections" Click="OnHomeFilterSelected">
+                    <RadioMenuFlyoutItem.Icon><FontIcon Glyph="&#xE718;" /></RadioMenuFlyoutItem.Icon>
+                  </RadioMenuFlyoutItem>
+                </MenuFlyout>
+              </DropDownButton.Flyout>
+            </DropDownButton>
+          <Button x:Name="OpenFileButton" Click="OnOpenFile" IsEnabled="False" Width="40"
+                  VerticalAlignment="Center" AutomationProperties.Name="Open a Video" ToolTipService.ToolTip="Open a Video">
+              <FontIcon Glyph="&#xE8E5;" FontSize="16" />
+          </Button>
+          <Button x:Name="LibraryRefreshButton" Click="OnRefreshLibrary" Visibility="Collapsed" Width="40"
+                  AutomationProperties.Name="Refresh videos" ToolTipService.ToolTip="Refresh">
+            <FontIcon Glyph="&#xE72C;" FontSize="16" />
+          </Button>
+          <views:GalleryToolbar x:Name="HomeToolbar" VerticalAlignment="Center" />
+          </StackPanel>
+        </Grid>
+        <views:VideosView x:Name="VideoLibrary" Grid.Row="1" Visibility="Collapsed" />
+        <InfoBar x:Name="LibraryNotice" Grid.Row="1" VerticalAlignment="Bottom" IsOpen="False" Severity="Warning" />
+      </Grid>
+    </Border>
+  </NavigationView>
+  <ContentControl x:Name="PlaybackSettingsHost" Visibility="Collapsed"
+                  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
+  </Grid>
+</UserControl>

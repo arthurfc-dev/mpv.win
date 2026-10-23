@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "implicitWindowsSdkPackage": {
+    "id": "Microsoft.Windows.SDK.NET.Ref",
+    "version": "10.0.26100.57",
+    "licenseReference": "licenses/Microsoft.Windows.SDK.NET.Ref/10.0.26100.57/LICENSE-URL.txt",
+    "terms": "Actual package-referenced SDK terms are preserved; compatibility of the complete bundled GPL distribution remains unresolved in distribution-review.json.",
+    "licenseTexts": [
+      "licenses/Microsoft.Windows.SDK.NET.Ref/10.0.26100.57/LICENSE-URL.txt",
+      "licenses/Microsoft.Windows.SDK.NET.Ref/10.0.26100.57/LICENSE.rtf"
+    ]
+  },
+  "components": [
+    {
+      "file": "WinRT.Runtime.dll",
+      "productVersion": "2.2.0.48161+8649ee3eeb2445ca2a36d80d878ef60b96a6c65d",
+      "sha256": "bcf3a14e8712a90837fc5c0d8c8a24696af2bd7f74e9767597ec81ededfb23db"
+    },
+    {
+      "file": "Microsoft.Windows.SDK.NET.dll",
+      "productVersion": "10.0.26100.55+7e1ba99b2f0c1ea5311dcb3acfe20a75335efd6e",
+      "sha256": "c633ab241cd09846c2aa409f0bee2026962610404a7bf132c75cbd66b0e5a9f4"
+    }
+  ],
+  "csWinRtSource": "https://github.com/microsoft/CsWinRT/tree/8649ee3eeb2445ca2a36d80d878ef60b96a6c65d",
+  "dotnetRuntime": "Setup bundles the unmodified Microsoft .NET 10.0.13 x64 runtime installer, verified against official release metadata. Original runtime license and third-party notices are included. It is installed only when the required runtime is missing.",
+  "fonts": "Segoe UI and Segoe Fluent Icons are supplied by Windows; no font binaries are bundled.",
+  "nativeCrt": "Player.Native uses the release static MSVC runtime (/MT). Redistribution guidance was reviewed; the combined GPL distribution basis remains part of distribution-review.json. No debug CRT is selected.",
+  "rustRuntime": {
+    "sourceCommit": "58cf8f9c35b355199727627d07ae34a4e2846d67",
+    "sourceVersion": "1.99.1",
+    "evidence": "Source paths embedded in the current upstream DLL and the separately compiled pinned candidate",
+    "sourceUrl": "https://github.com/rust-lang/rust/tree/58cf8f9c35b355199727627d07ae34a4e2846d67",
+    "licenseTexts": [
+      {
+        "path": "licenses/Rust/COPYRIGHT",
+        "sha256": "172020dbfd5b53a226dfde77616190a48dcff519b0bc0e6deb91a8450782c4af"
+      },
+      {
+        "path": "licenses/Rust/LICENSE-APACHE",
+        "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+      },
+      {
+        "path": "licenses/Rust/LICENSE-MIT",
+        "sha256": "b71bd43a069ca0641a9ecfe585ca7b3c53b5cc1608f8b68321168698e28b5ea1"
+      }
+    ],
+    "detailedStandardLibraryNoticeReview": "Exact toolchain COPYRIGHT-library.html and COPYRIGHT.html preserved in the checksum-pinned libmpv notice bundle.",
+    "noticeBundle": "libmpv-notices.json"
+  },
+  "gccRuntime": {
+    "license": "GPL-3.0-or-later WITH GCC-exception-3.1",
+    "licenseTexts": [
+      "licenses/GCC/16.2.0/COPYING3",
+      "licenses/GCC/16.2.0/COPYING.RUNTIME"
+    ],
+    "evidence": "Pinned image toolchain configuration and recorded static libgcc/libstdc++/libatomic and -lgomp link inputs",
+    "version": "16.2.0",
+    "reference": "https://gcc.gnu.org/onlinedocs/libstdc++/manual/license.html"
+  }
+}

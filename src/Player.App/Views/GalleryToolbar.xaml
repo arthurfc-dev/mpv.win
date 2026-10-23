@@ -1,0 +1,14 @@
+<UserControl x:Class="Player.App.Views.GalleryToolbar"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+ <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right">
+  <DropDownButton ToolTipService.ToolTip="Sort" AutomationProperties.Name="Sort videos">
+   <FontIcon Glyph="&#xE8CB;" FontSize="16" />
+   <DropDownButton.Flyout><MenuFlyout x:Name="SortMenu" /></DropDownButton.Flyout>
+  </DropDownButton>
+  <DropDownButton ToolTipService.ToolTip="Gallery layout and size" AutomationProperties.Name="Gallery layout and size">
+   <FontIcon Glyph="&#xF0E2;" FontSize="16" />
+   <DropDownButton.Flyout><MenuFlyout x:Name="LayoutMenu" /></DropDownButton.Flyout>
+  </DropDownButton>
+ </StackPanel>
+</UserControl>

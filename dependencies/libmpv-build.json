@@ -1,0 +1,26 @@
+{
+  "purpose": "Pinned Windows x64 libmpv build; the application dependency pin is maintained separately",
+  "container": "ghcr.io/btbn/ffmpeg-builds/win64-lgpl@sha256:59662fba1b2d870e1aa1d074d3620b71dc98c62df01e2682a0edec224658ad7a",
+  "containerRecipe": "63ac3265b0789ea16c7b1f8351cd2ad195a28722",
+  "sourceDate": "2026-10-18T14:17:02+00:00",
+  "sources": {
+    "mpv": ["https://github.com/mpv-player/mpv.git", "6a262d11f63733d37e3ee6d5fafcb1be1ef83952"],
+    "ffmpeg": ["https://github.com/FFmpeg/FFmpeg.git", "b60ab6c9a4583cd4bbdc010b412d598945919da8"],
+    "LuaJIT": ["https://github.com/LuaJIT/LuaJIT.git", "2a8e017ef1ece6a95b983ffca073d30609dce7c4"],
+    "libsixel": ["https://github.com/saitoha/libsixel.git", "f0b705a365563c56f977afaca73997ca68669c62"],
+    "subrandr": ["https://github.com/afishhh/subrandr.git", "fe13c58e178431ec469c556a91bc080096738dc7"],
+    "cppwinrt": ["https://github.com/microsoft/cppwinrt.git", "69c78cfc7920367c4ce9cc024cf8c5b8d217fb1b"],
+    "windows-rs": ["https://github.com/microsoft/windows-rs.git", "65c0c07b5b88ac031cf56acddd9f892efee1634a"]
+  },
+  "mujs": {
+    "source": "https://github.com/mesonbuild/wrapdb/releases/download/mujs_1.3.8-1/mujs-1.3.8.tar.gz",
+    "sourceSha256": "506d34882f2620a2fdeb6db63dbb7a8ffd98f417689d8f3c84f2feac275e39a9",
+    "patch": "https://github.com/mesonbuild/wrapdb/releases/download/mujs_1.3.8-1/mujs_1.3.8-1_patch.zip",
+    "patchSha256": "20bf51cb657b22f02df05815677003f971da5896a7250940fd02bdabab5fe870"
+  },
+  "limitations": [
+    "libsixel and subrandr are fixed for this rebuild; the original upstream DLL did not record their revisions",
+    "Container dependency source closure is audited separately; the container digest alone is not corresponding source",
+    "Byte-identical reproducibility is not established; review new builds before updating the application dependency"
+  ]
+}

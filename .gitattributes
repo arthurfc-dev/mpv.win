@@ -1,0 +1,15 @@
+* text=auto
+*.cs text eol=crlf
+*.xaml text eol=crlf
+*.csproj text eol=crlf
+*.vcxproj text eol=crlf
+*.ps1 text eol=crlf
+*.md text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+*.ico binary
+*.png binary
+*.jpg binary
+
+# Preserve third-party license/notice files byte-for-byte, including whitespace.
+dependencies/licenses/** -text -whitespace

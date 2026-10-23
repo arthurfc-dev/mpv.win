@@ -1,0 +1,44 @@
+<UserControl
+    x:Class="Player.App.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Player.App">
+  <Grid>
+    <local:MainPage x:Name="PlayerPage" />
+    <Grid x:Name="TitleChrome" VerticalAlignment="Top">
+      <Border x:Name="TitleScrim" Height="88" VerticalAlignment="Top" IsHitTestVisible="False"
+              Background="{ThemeResource PlayerTitleScrimBrush}" Visibility="Collapsed" />
+      <Border x:Name="TitleBand" Height="{Binding ActualHeight, ElementName=AppTitleBar}"
+              VerticalAlignment="Top" IsHitTestVisible="False"
+              Background="{ThemeResource PlayerTitleBarBrush}" Visibility="Collapsed" />
+      <Grid x:Name="AppTitleBar" Height="40" Background="Transparent" VerticalAlignment="Top">
+        <Button x:Name="HomeBackButton" Width="32" Height="32" Margin="4,0,0,0" Padding="8"
+                HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"
+                BorderThickness="0" IsEnabled="False" IsTabStop="False" Click="OnNavigateBack"
+                GotFocus="OnBackFocusChanged" LostFocus="OnBackFocusChanged"
+                AutomationProperties.Name="Back" ToolTipService.ToolTip="Back (Alt+Left)">
+          <Button.Resources>
+            <SolidColorBrush x:Key="ButtonBackgroundDisabled" Color="Transparent" />
+            <SolidColorBrush x:Key="ButtonBorderBrushDisabled" Color="Transparent" />
+          </Button.Resources>
+          <FontIcon Glyph="&#xE72B;" FontSize="12" />
+        </Button>
+        <Button x:Name="ForwardButton" Width="32" Height="32" Margin="40,0,0,0" Padding="8"
+                HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent"
+                BorderThickness="0" IsEnabled="False" IsTabStop="False" Click="OnNavigateForward"
+                GotFocus="OnBackFocusChanged" LostFocus="OnBackFocusChanged"
+                AutomationProperties.Name="Forward" ToolTipService.ToolTip="Forward (Alt+Right)">
+          <Button.Resources>
+            <SolidColorBrush x:Key="ButtonBackgroundDisabled" Color="Transparent" />
+            <SolidColorBrush x:Key="ButtonBorderBrushDisabled" Color="Transparent" />
+          </Button.Resources>
+          <FontIcon Glyph="&#xE72A;" FontSize="12" />
+        </Button>
+        <StackPanel x:Name="TitleBranding" Orientation="Horizontal" Spacing="12" Margin="88,0,0,0" VerticalAlignment="Center">
+          <Image Source="ms-appx:///Assets/AppLogo.png" Width="20" Height="20" Stretch="Uniform" AutomationProperties.AccessibilityView="Raw" />
+          <TextBlock Text="mpv.win" FontSize="12" Foreground="{ThemeResource TextFillColorPrimaryBrush}" />
+        </StackPanel>
+      </Grid>
+    </Grid>
+  </Grid>
+</UserControl>

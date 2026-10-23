@@ -1,0 +1,23 @@
+<UserControl x:Class="Player.App.Views.SubtitlePreview"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+ <StackPanel Spacing="10">
+  <TextBlock Text="Subtitle preview" FontSize="16" FontWeight="SemiBold" />
+  <Border BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="4"
+          Background="#808080">
+   <Viewbox Stretch="Uniform" HorizontalAlignment="Stretch">
+    <Grid x:Name="Scene" Width="1280" Height="720" Background="#808080" IsHitTestVisible="False" Loaded="OnSceneLoaded">
+     <Canvas Width="1280" Height="720">
+      <Grid x:Name="CaptionLayers" Width="1180" Canvas.Left="50" Canvas.Top="600" SizeChanged="OnCaptionSizeChanged">
+       <TextBlock x:Name="Caption" Text="This is a subtitle preview.&#x0a;The second line helps check readability."
+                  FontFamily="Arial" FontSize="38" Foreground="White" TextAlignment="Center"
+                  TextWrapping="Wrap" MaxLines="3" />
+      </Grid>
+     </Canvas>
+    </Grid>
+   </Viewbox>
+  </Border>
+  <TextBlock Text="Example only. Subtitles in your videos may look different, especially if they have their own styling."
+             FontSize="12" TextWrapping="Wrap" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+ </StackPanel>
+</UserControl>

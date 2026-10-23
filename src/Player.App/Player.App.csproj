@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows10.0.26100.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.26100.0</TargetPlatformMinVersion>
+    <RootNamespace>Player.App</RootNamespace>
+    <AssemblyName>mpv-win</AssemblyName>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Authors>arthurfc-dev and mpv.win contributors</Authors>
+    <AssemblyTitle>mpv.win</AssemblyTitle>
+    <Description>mpv.win media player</Description>
+    <Copyright>Copyright (C) 2026 mpv.win contributors</Copyright>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/arthurfc-dev/mpv.win</RepositoryUrl>
+    <Deterministic>true</Deterministic>
+    <Title>mpv.win</Title>
+    <Product>mpv.win</Product>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\AppIcon.ico</ApplicationIcon>
+    <Platforms>x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <UseWinUI>true</UseWinUI>
+    <WinUISDKReferences>false</WinUISDKReferences>
+    <WindowsPackageType>None</WindowsPackageType>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <EnableMsixTooling>false</EnableMsixTooling>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PublishTrimmed>false</PublishTrimmed>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <RestoreLockedMode>true</RestoreLockedMode>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="..\..\LICENSE" Link="licenses\mpv.win\LICENSE" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\dependencies\licenses\**\*" Link="licenses\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\.local\libmpv-notices\**\*" Exclude="..\..\.local\libmpv-notices\.archive-sha256" Link="licenses\libmpv-build\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\dependencies\*-inventory.json;..\..\dependencies\libmpv-provenance.json;..\..\dependencies\libmpv.json" Link="licenses\inventory\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\..\dependencies\libmpv-build.json;..\..\dependencies\libmpv-sources.json;..\..\dependencies\libmpv-notices.json;..\..\dependencies\libmpv-container-sources.json;..\..\dependencies\installer.json" Link="licenses\inventory\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2705" />
+    <PackageReference Include="Microsoft.WindowsAppSDK.WinUI" Version="2.3.9" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\AppIcon.ico" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Assets\AppLogo.png" CopyToOutputDirectory="PreserveNewest" />
+    <ProjectReference Include="..\Player.Native\Player.Native.vcxproj" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+  <Target Name="CopyNativeBridge" AfterTargets="Build">
+    <Copy SourceFiles="$(MSBuildThisFileDirectory)..\..\.local\libmpv\libmpv-2.dll"
+          DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(MSBuildThisFileDirectory)..\..\artifacts\native\x64\$(Configuration)\Player.Native.dll"
+          DestinationFolder="$(TargetDir)" SkipUnchangedFiles="true" />
+  </Target>
+</Project>

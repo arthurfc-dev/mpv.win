@@ -1,0 +1,186 @@
+{
+  "schemaVersion": 1,
+  "status": "review-complete-open-licensing-question",
+  "platform": "Windows x64",
+  "dllSha256": "34450ccf97dbcacc79d6f3b051a49b039c6aca8c4860d1af60b731e5fd46f03b",
+  "mpv": {
+    "license": "LGPL-2.1-or-later for the selected mpv core; the combined DLL also contains GPL-2.0-or-later FFTW through Chromaprint.",
+    "configuration": "-Dbuildtype=release -Dwerror=true -Dlibmpv=true -Dtests=false -Dprefer_static=true -Ddefault_library=shared -Dc_link_args=-lgomp -Dcpp_link_args=-lgomp -Dgpl=false -Dforce_fallback_for=mujs -Dmujs:werror=false -Dmujs:default_library=static -Dlua=luajit -Damf=enabled -Dd3d11=enabled -Djavascript=enabled -Dlcms2=enabled -Dlibbluray=enabled -Dlibcurl=enabled -Dshaderc=enabled -Dsixel=enabled -Dspirv-cross=enabled -Dsubrandr=enabled -Dvapoursynth=enabled -Dvulkan=enabled -Dwin32-smtc=enabled -Dzimg=enabled --cross-file=/cross.meson",
+    "sourceUrl": "https://github.com/mpv-player/mpv/tree/6a262d11f63733d37e3ee6d5fafcb1be1ef83952",
+    "reportedVersion": "0.41.0-UNKNOWN (shallow source checkout; exact source commit is pinned separately)"
+  },
+  "ffmpeg": {
+    "reportedVersion": "git-2026-10-18-b60ab6c",
+    "commit": "b60ab6c9a4583cd4bbdc010b412d598945919da8",
+    "sourceUrl": "https://github.com/FFmpeg/FFmpeg/tree/b60ab6c9a4583cd4bbdc010b412d598945919da8",
+    "version3Enabled": true,
+    "configurationFromDll": "--prefix=/opt/ffbuild --pkg-config-flags=--static --pkg-config=pkg-config --cross-prefix=x86_64-w64-mingw32- --arch=x86_64 --target-os=mingw32 --enable-version3 --disable-debug --disable-w32threads --enable-pthreads --enable-iconv --enable-zlib --enable-libxml2 --enable-libvmaf --enable-fontconfig --enable-libharfbuzz --enable-libfreetype --enable-libfribidi --enable-lcms2 --enable-vulkan --enable-libdav1d --enable-libvorbis --enable-librav1e --enable-librsvg --disable-libxcb --disable-xlib --disable-libpulse --enable-gmp --enable-lzma --enable-liblcevc-dec --enable-opencl --enable-amf --enable-libaom --disable-avisynth --enable-chromaprint --disable-libdavs2 --disable-libdvdread --disable-libdvdnav --disable-libfdk-aac --enable-ffnvcodec --enable-cuda-llvm --disable-frei0r --enable-libgme --enable-libkvazaar --enable-libaribb24 --enable-libaribcaption --enable-libass --enable-libbluray --enable-libcurl --enable-libjxl --enable-libmp3lame --enable-libopus --enable-libplacebo --enable-librist --enable-libssh --enable-libtheora --enable-libvpx --enable-libwebp --enable-libzmq --enable-lv2 --enable-libvpl --enable-openal --enable-liboapv --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenh264 --enable-libopenjpeg --enable-libopenmpt --disable-librubberband --enable-schannel --enable-sdl2 --enable-libsnappy --enable-libsoxr --enable-libsrt --enable-libsvtav1 --enable-libtwolame --enable-libuavs3d --disable-libdrm --enable-vaapi --enable-vapoursynth --disable-libvidstab --enable-libvvenc --disable-whisper --disable-libx264 --disable-libx265 --disable-libxavs2 --disable-libxvid --enable-libzimg --enable-libzvbi --extra-cflags=-DLIBTWOLAME_STATIC --extra-cxxflags= --extra-libs=-lgomp --extra-ldflags=-pthread --extra-ldexeflags= --cc=x86_64-w64-mingw32-gcc --cxx=x86_64-w64-mingw32-g++ --ar=x86_64-w64-mingw32-gcc-ar --ranlib=x86_64-w64-mingw32-gcc-ranlib --nm=x86_64-w64-mingw32-gcc-nm --enable-static --disable-shared --disable-doc --disable-programs --disable-librav1e --disable-librsvg --disable-openal",
+    "licenseTexts": [
+      "licenses/FFmpeg/COPYING.LGPLv3",
+      "licenses/FFmpeg/COPYING.GPLv3",
+      "licenses/FFmpeg/LICENSE.md"
+    ]
+  },
+  "mesonDetectedDependencies": [
+    {
+      "name": "libavcodec",
+      "reportedVersion": "63.20.101"
+    },
+    {
+      "name": "libavfilter",
+      "reportedVersion": "12.5.100"
+    },
+    {
+      "name": "libavformat",
+      "reportedVersion": "63.11.100"
+    },
+    {
+      "name": "libavutil",
+      "reportedVersion": "61.14.100"
+    },
+    {
+      "name": "libswresample",
+      "reportedVersion": "7.3.101"
+    },
+    {
+      "name": "libswscale",
+      "reportedVersion": "10.2.100"
+    },
+    {
+      "name": "libplacebo",
+      "reportedVersion": "7.374.0"
+    },
+    {
+      "name": "libass",
+      "reportedVersion": "0.17.5"
+    },
+    {
+      "name": "subrandr",
+      "reportedVersion": "1.4.0"
+    },
+    {
+      "name": "libcurl",
+      "reportedVersion": "8.23.0-DEV"
+    },
+    {
+      "name": "lcms2",
+      "reportedVersion": "2.19"
+    },
+    {
+      "name": "libavdevice",
+      "reportedVersion": "63.2.100"
+    },
+    {
+      "name": "libbluray",
+      "reportedVersion": "1.5.1"
+    },
+    {
+      "name": "luajit",
+      "reportedVersion": "2.1.1791988261"
+    },
+    {
+      "name": "sdl2",
+      "reportedVersion": "2.33.0"
+    },
+    {
+      "name": "vapoursynth",
+      "reportedVersion": "80"
+    },
+    {
+      "name": "zimg",
+      "reportedVersion": "3.0.6"
+    },
+    {
+      "name": "zlib",
+      "reportedVersion": "1.3.2.1-motley"
+    },
+    {
+      "name": "shaderc_combined",
+      "reportedVersion": "2026.5.0"
+    },
+    {
+      "name": "libsixel",
+      "reportedVersion": "1.8.7-r2"
+    },
+    {
+      "name": "spirv-cross-c-shared",
+      "reportedVersion": "0.68.0"
+    },
+    {
+      "name": "gl",
+      "reportedVersion": "unknown"
+    },
+    {
+      "name": "vulkan",
+      "reportedVersion": "1.4.363"
+    },
+    {
+      "name": "ffnvcodec",
+      "reportedVersion": "13.1.15.1.0"
+    },
+    {
+      "name": "libva",
+      "reportedVersion": "1.25.0"
+    },
+    {
+      "name": "libva-win32",
+      "reportedVersion": "1.25.0"
+    }
+  ],
+  "evidenceLimits": [
+    "Meson detection is not a complete list of code linked into the DLL.",
+    "FFmpeg configure switches do not identify exact source revisions or all transitive libraries.",
+    "No source-completeness or binary-redistribution clearance is claimed."
+  ],
+  "outstanding": [
+    "The GPL distribution basis for bundled Microsoft runtime/SDK components remains an open interpretation question; publication does not establish legal clearance.",
+    "Maintain the preserved corresponding-source bundles and build inputs for recipients of the released binary."
+  ],
+  "build": {
+    "sourceCommit": "93fe70322f6e4ccebde073f43037dad2930dd087",
+    "compile": "success",
+    "workflowConclusion": "source-archive-permissions-failure-after-successful-compilation",
+    "sourceRecovery": "Six fnv 1.0.7 files recovered from its checksum-verified Cargo package; all matched the original build manifest.",
+    "sourceVerifiedFileCount": 13799,
+    "container": "ghcr.io/btbn/ffmpeg-builds/win64-lgpl@sha256:59662fba1b2d870e1aa1d074d3620b71dc98c62df01e2682a0edec224658ad7a",
+    "playbackReview": "User confirmed the rebuilt player works; no performance benchmark claim.",
+    "originalRunId": 39836010261
+  },
+  "correspondingSources": {
+    "schemaVersion": 1,
+    "repository": "arthurfc-dev/mpv.win",
+    "bundles": [
+      {
+        "url": "https://github.com/arthurfc-dev/mpv.win/releases/download/v1.0.0/libmpv-pinned-candidate-base-sources.zip",
+        "sha256": "2143e197da07336febfe70ce061e09b61f2b5a52496e9e3c65eb1b6a86a30b74",
+        "name": "libmpv-pinned-candidate-base-sources.zip",
+        "assetId": 667559882
+      },
+      {
+        "url": "https://github.com/arthurfc-dev/mpv.win/releases/download/v1.0.0/libmpv-pinned-candidate-39836010261.tar.gz",
+        "sha256": "a2a2c168fc13301191d2c4100180dc0ac867fbf32de21988c58b8859f3eec5fc",
+        "name": "libmpv-pinned-candidate-39836010261.tar.gz",
+        "assetId": 667562032
+      }
+    ],
+    "availability": "Corresponding-source archives are distributed alongside setup in the mpv.win 1.0 release. Build recipes, patches and source inventories are preserved in these archives."
+  },
+  "notices": {
+    "schemaVersion": 1,
+    "url": "https://github.com/arthurfc-dev/mpv.win/releases/download/v1.0.0/libmpv-g6a262d11f-mpv-win.1-notices.2.zip",
+    "apiUrl": "https://api.github.com/repos/arthurfc-dev/mpv.win/releases/assets/667559574",
+    "sha256": "7fc8ab89153c96fbd704d97da3048a49b2b25817ab54b3eba78d183fe19ce4ef",
+    "dllSha256": "34450ccf97dbcacc79d6f3b051a49b039c6aca8c4860d1af60b731e5fd46f03b",
+    "sourceArchiveCount": 134,
+    "noticeFileCount": 906,
+    "scope": "Conservative build-input notices including unlinked/build-only components; exact toolchain standard-library notices and inline NVIDIA header licenses are included.",
+    "originalCollectionRunId": 39866603497,
+    "collectionEvidence": "notice-inventory.json and collection-evidence.json are preserved in the checksum-pinned notice archive. The original build repository was replaced."
+  },
+  "effectiveDistributionLicense": {
+    "binaryChanged": false,
+    "evidence": "Chromaprint FFT_LIB=fftw3 recipe, static link inputs and FFTW version/wisdom data in the actual DLL",
+    "basis": "GPL-3.0 combination for the reviewed application/engine; constituent license rights remain preserved",
+    "review": "distribution-review.json"
+  }
+}

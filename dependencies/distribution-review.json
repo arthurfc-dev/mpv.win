@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "reviewDate": "2026-10-22",
+  "status": "review-complete-open-licensing-question",
+  "reviewedInstallerSha256": "db96701eb427373f1f4c6d9316776b48c24ce04141312ae211a49cde18496f6e",
+  "reviewedLibmpvSha256": "34450ccf97dbcacc79d6f3b051a49b039c6aca8c4860d1af60b731e5fd46f03b",
+  "checks": [
+    {
+      "id": "installed-engine",
+      "result": "pass",
+      "evidence": "The installed libmpv DLL matches the reviewed rebuild hash."
+    },
+    {
+      "id": "source-preservation",
+      "result": "pass-with-scope",
+      "evidence": "Both preserved source bundle hashes match their pins. All 119 container top-level/nested source archive hashes were rechecked with zero mismatches. The rebuilt-engine archive previously passed its 13799-file integrity audit. This is input preservation, not proof of an offline reproducible rebuild."
+    },
+    {
+      "id": "microsoft-package-ownership",
+      "result": "pass-with-scope",
+      "evidence": "All 81 third-party root executable/metadata files in the installed preview matched restored NuGet package bytes. The other five root executable files are the application assembly, generated apphost, native bridge, libmpv and the generated Inno uninstaller. This establishes origin, not GPL compatibility of the complete distribution."
+    },
+    {
+      "id": "effective-engine-license",
+      "result": "corrected-metadata",
+      "evidence": "The pinned container builds Chromaprint with FFT_LIB=fftw3. Meson records libchromaprint.a and libfftw3.a as static link inputs; the DLL contains fftw-3.3.11 and fftw_wisdom data. FFTW is GPL-2.0-or-later. The combined binary must not be described as LGPL-only merely because mpv used -Dgpl=false or the image name contains lgpl.",
+      "sources": [
+        "https://github.com/acoustid/chromaprint/blob/aed8eba2202dd9d7b3b0a56c77904cc805490d72/README.md#fft-library",
+        "https://github.com/FFTW/fftw3/blob/93ed4c786934aec9946f8dda4b4e3eb08f8be41c/COPYRIGHT"
+      ]
+    },
+    {
+      "id": "missing-license-texts",
+      "result": "private-package-refreshed",
+      "evidence": "Fresh Release app and setup compiled with exact GCC license/exception files, original Windows SDK RTF and current corresponding-source download inventory. Setup displays the original SDK terms. Build checks compare the required license files and source inventory with their tracked originals. Compilation and payload integrity do not establish a GPL compatibility determination or a new installation test."
+    },
+    {
+      "id": "winui-source-availability",
+      "result": "specific-exclusion-identified",
+      "evidence": "Current Microsoft build instructions permit building WinUI product binaries, but explicitly exclude Microsoft.UI.Xaml.Internal.dll from open source. This DLL is present in our self-contained package. The old blanket claim that WinUI cannot be built from source is outdated. Neither this exclusion nor the package EULA alone establishes that this GPL distribution is prohibited.",
+      "sources": [
+        "https://github.com/microsoft/microsoft-ui-xaml/blob/main/GettingStarted.md#current-limitations"
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "id": "bundled-microsoft-components",
+      "priority": "high",
+      "finding": "The Microsoft package EULA expressly permits redistributing binplaced Windows App SDK files, subject to its conditions. An unresolved question remains whether the app-local Microsoft runtime components, including the non-OSS Microsoft.UI.Xaml.Internal.dll and SDK .NET projection, qualify for GPL System Libraries treatment or have another sufficient distribution basis. This review has not established incompatibility or a mandatory engine rebuild.",
+      "requiredResolution": "Obtain a reasoned determination for the exact packaged components under GPL section 1/System Libraries, or an applicable permission covering the combined distribution. An application-only exception cannot grant permissions for third-party GPL-covered FFTW. Keep GPL-3.0-only and the existing engine unchanged while this question is unresolved.",
+      "sources": [
+        "licenses/Microsoft.WindowsAppSDK.WinUI/2.3.9/license.txt",
+        "licenses/Microsoft.Windows.SDK.NET.Ref/10.0.26100.57/LICENSE.rtf",
+        "https://www.gnu.org/licenses/gpl-faq.en.html#SystemLibraryException",
+        "https://www.gnu.org/licenses/gpl-faq.en.html#GPLIncompatibleLibs"
+      ]
+    }
+  ],
+  "publicationConditions": [
+    "Keep the exact corresponding-source archives and application source revision accessible to recipients of the binary.",
+    "Retain the recorded open Microsoft/GPL interpretation question; do not claim source availability alone proves complete redistribution compliance.",
+    "Preserve prior user-confirmed installation acceptance. This new setup is a fresh package; clean-machine missing-runtime installation and version-to-version upgrade remain unperformed checks."
+  ],
+  "publicationDecision": "The user authorized public repository and 1.0 release publication on 2026-10-22. This does not resolve the recorded licensing interpretation question or claim legal clearance."
+}
